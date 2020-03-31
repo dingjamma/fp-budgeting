@@ -13,11 +13,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "standard --fix && react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "standard"
   },
   "browserslist": {
     "production": [
@@ -29,6 +29,23 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "repository": "https://github.com/lm902/fp-budgeting.git",
+  "devDependencies": {
+    "standard": "^14.3.3"
+  },
+  "author": "lm902 <i@lm902.cn> (https://github.com/lm902/)",
+  "contributors": [
+    "lm902 <i@lm902.cn> (https://github.com/lm902/)",
+    "Tasnuva Haque (https://github.com/thaqueubc/)",
+    "James Ding (https://github.com/dingjamma/)",
+    "Tony Koo (https://github.com/TonyKoo/)"
+  ],
+  "license": "Apache-2.0",
+  "standard": {
+    "ignore": [
+      "**/*.test.js"
     ]
   }
 }
