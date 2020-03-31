@@ -1,0 +1,10 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/leancloud/typed-leancloud-storage/f1eaaf905249b90c2cfc179c0adaa3283d5d14d8/typings.json",
+    "raw": "registry:npm/leancloud-storage#1.0.1-rc.1+20160610170214",
+    "main": "index.d.ts",
+    "version": "",
+    "name": "leancloud-storage"
+  }
+}
