@@ -1,6 +1,6 @@
 import React from 'react'
 import AV from 'leancloud-storage'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 export default class LogIn extends React.Component {
   constructor (props) {
@@ -42,6 +42,7 @@ export default class LogIn extends React.Component {
         }}
         >{this.state.createAccount ? 'Register' : 'Log in'}
         </button>
+        <Link to='/verify'>Problems logging in?</Link>
         {this.state.completed && <Redirect to='/' />}
       </div>
     )
