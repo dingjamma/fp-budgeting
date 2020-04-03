@@ -4,6 +4,7 @@ import { HashRouter, Switch, Route, Link } from 'react-router-dom'
 import AV from 'leancloud-storage'
 import Home from './pages/Home'
 import LogIn from './pages/LogIn'
+import Verify from './pages/Verify'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -24,6 +25,9 @@ export default class App extends React.Component {
           </Route>
           <Route path='/login' exact>
             <LogIn />
+          </Route>
+          <Route path='/verify' exact>
+            <Verify />
           </Route>
         </Switch>
       </HashRouter>
