@@ -9,6 +9,8 @@ import Navbar from './components/Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Verify from './pages/Verify'
 
+
+
 export default class App extends React.Component {
   constructor (props) {
     super(props)
