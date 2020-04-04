@@ -5,10 +5,9 @@ import AV from 'leancloud-storage'
 import Home from './pages/Home'
 import LogIn from './pages/LogIn'
 import Footer from './pages/Footer'
-import Navbar from './components/Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Verify from './pages/Verify'
-
+import Navbar from './components/Navbar'
 
 
 export default class App extends React.Component {
