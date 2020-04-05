@@ -28,7 +28,7 @@ function Navbar () {
               : (
                 <li className='nav-item active text-white'>
                   {AV.User.current().getUsername()}
-                  <button className='btn' onClick={() => AV.User.loginAnonymously().then(() => window.location.reload())}>Sign out</button>
+                  <button className='btn btn-secondary' onClick={() => AV.User.loginAnonymously().then(() => window.location.reload())}>Sign out</button>
                 </li>
               )}
 
