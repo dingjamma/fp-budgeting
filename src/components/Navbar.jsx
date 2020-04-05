@@ -22,7 +22,7 @@ function Navbar () {
             </Link>
             {!AV.User.current() || AV.User.current().isAnonymous()
               ? (
-                <Link to='/logIn'>
+                <Link to='/login'>
                   <li className='nav-item active'>
                     <a className='nav-link text-white text-uppercase ml-5' href='#'> Login/Registration </a>
                   </li>

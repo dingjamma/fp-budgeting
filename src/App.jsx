@@ -28,7 +28,7 @@ export default class App extends React.Component {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/logIn' component={LogIn} />
+            <Route path='/login' component={LogIn} />
             <Route path='/verify' component={Verify} />
           </Switch>
           {/* <Footer/> */}
