@@ -145,54 +145,57 @@ export default class Categories extends React.Component {
       return <Redirect to="/" />;
     }
     return (
-      <div className="container">
-        <h3>Manage Categories for {this.user.getUsername()}</h3>
+      <div className="container ">
+        <div className="d-flex align-items-center justify-content-center category">
+            <div>
+                    <h3>Manage Categories for {this.user.getUsername()}</h3>
+                    <br />
+                    <br />
+                    {this.state.isLoading && <h5>Loading...</h5>}
 
-        <br />
-        <input
-          value={this.state.newCategoryEntry}
-          onChange={this.handleCategoryEntry}
-        />
-        <button onClick={this.addCategory}>Add</button>
+                    {this.state.userCategories.length > 0 && !this.state.isLoading && (
+                      <React.Fragment>
+                        <table className="table table-striped table-dark text-center">
+                          <thead>
+                            <tr>
+                              <th>Category</th>
+                              <th>Budget</th>
+                              <th>Delete</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {this.state.userCategories.map((userCategory, index) => (
+                              <tr key={index}>
+                                <td>{userCategory.Category}</td>
+                                <td>
+                                  <BudgetInput
+                                    userCategory={userCategory}
+                                    updateBudget={this.updateBudget}
+                                  />
+                                </td>
+                                <td>
+                                  <button onClick={() => this.removeCategory(userCategory)}>
+                                  <i class="far fa-trash-alt"></i>
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
 
-        {this.state.isLoading && <h5>Loading...</h5>}
+                        <input
+                      value={this.state.newCategoryEntry}
+                      onChange={this.handleCategoryEntry}
+                    />
+                    <button onClick={this.addCategory}> <i class="far fa-plus-square"></i> </button>
+                      </React.Fragment>
+                    )}
 
-        {this.state.userCategories.length > 0 && !this.state.isLoading && (
-          <React.Fragment>
-            <h4>My Categories</h4>
-            <table>
-              <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>Budget</th>
-                  <th>Del</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.userCategories.map((userCategory, index) => (
-                  <tr key={index}>
-                    <td>{userCategory.Category}</td>
-                    <td>
-                      <BudgetInput
-                        userCategory={userCategory}
-                        updateBudget={this.updateBudget}
-                      />
-                    </td>
-                    <td>
-                      <button onClick={() => this.removeCategory(userCategory)}>
-                        X
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </React.Fragment>
-        )}
-
-        {this.state.userCategories.length == 0 && !this.state.isLoading && (
-          <h4>No Categories</h4>
-        )}
+                    {this.state.userCategories.length == 0 && !this.state.isLoading && (
+                      <h4>No Categories</h4>
+                    )} 
+              </div>
+          </div>
       </div>
     );
   }

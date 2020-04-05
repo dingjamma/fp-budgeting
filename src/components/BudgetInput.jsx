@@ -20,7 +20,7 @@ export default function BudgetInput(props) {
           props.updateBudget(props.userCategory.Category, budgetInput)
         }
       >
-        Update
+      <i class="far fa-edit"></i>
       </button>
     </React.Fragment>
   );
