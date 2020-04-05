@@ -7,8 +7,8 @@ export default class Home extends React.PureComponent {
     return (
       <div className='container'>
         <h1> Welcome !!! </h1>
-        {user && `Signed in as ${user.getUsername()}`}
-        {user && <button onClick={() => AV.User.logOut().then(() => this.forceUpdate())}>Sign out</button>}
+        {user && !user.isAnonymous() && `Signed in as ${user.getUsername()}`}
+        {user && !user.isAnonymous() && <button onClick={() => AV.User.loginAnonymously().then(() => this.forceUpdate())}>Sign out</button>}
       </div>
     )
   }

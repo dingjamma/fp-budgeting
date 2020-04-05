@@ -11,7 +11,9 @@ import Verify from './pages/Verify'
 export default class App extends React.Component {
   constructor (props) {
     super(props)
+    window.AV = AV
     AV.init(require('./av-config.json'))
+    !AV.User.current() && AV.User.loginAnonymously().then(() => this.forceUpdate())
   }
 
   render () {
