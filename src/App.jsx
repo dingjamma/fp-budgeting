@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import AV from 'leancloud-storage'
 import Home from './pages/Home'
 import LogIn from './pages/LogIn'
@@ -13,13 +13,18 @@ export default class App extends React.Component {
     super(props)
     window.AV = AV
     AV.init(require('./av-config.json'))
-    !AV.User.current() && AV.User.loginAnonymously().then(() => this.forceUpdate())
+    if (!AV.User.current()) {
+      AV.User.loginAnonymously().then(() => this.forceUpdate())
+    } else {
+      AV.User.current().fetch().then(() => this.forceUpdate())
+    }
   }
 
   render () {
     return (
       <Router>
         <div>
+          {(!AV.User.current() || AV.User.current().isAnonymous()) && <div id='nm-acc-warn'>Your data may be deleted, please <Link to='/logIn'>login or create an account</Link> in order to save your data.</div>}
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
