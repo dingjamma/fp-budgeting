@@ -1,5 +1,6 @@
 import React from "react";
 import AV from "leancloud-storage";
+import { Redirect, Link } from "react-router-dom";
 
 export default class Categories extends React.Component {
   constructor(props) {
@@ -109,6 +110,9 @@ export default class Categories extends React.Component {
   };
 
   render() {
+    if (!this.user) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className="container">
         <h3>Manage Categories for {this.user.getUsername()}</h3>
