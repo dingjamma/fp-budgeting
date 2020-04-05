@@ -8,3 +8,12 @@
   margin: auto;
 }
 
+#nm-acc-warn {
+  background: rgb(209, 90, 90);
+  color: white;
+  padding: 5px 10px;
+}
+
+#nm-acc-warn a {
+  color: rgb(127, 173, 224);
+}
