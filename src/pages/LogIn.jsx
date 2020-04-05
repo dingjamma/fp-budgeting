@@ -14,6 +14,9 @@ export default class LogIn extends React.Component {
       createAccount: false,
       completed: false
     }
+    if (AV.User.current() && !AV.User.current().isAnonymous()) {
+      this.state.completed = true
+    }
   }
 
   render () {
@@ -51,7 +54,10 @@ export default class LogIn extends React.Component {
               id='btn2' className='btn-lg btn-dark btn-block' onClick={async () => {
                 try {
                   if (this.state.createAccount) {
-                    const user = new AV.User()
+                    let user = AV.User.current()
+                    if (!user || !user.isAnonymous()) {
+                      user = new AV.User()
+                    }
                     user.setUsername(this.state.email)
                     user.setEmail(this.state.email)
                     user.setPassword(this.state.password)
@@ -59,9 +65,7 @@ export default class LogIn extends React.Component {
                   } else {
                     await AV.User.logIn(this.state.email, this.state.password)
                   }
-                  this.setState({
-                    completed: true
-                  })
+                  window.location.reload()
                 } catch (e) {
                   window.alert(e)
                   console.error(e)

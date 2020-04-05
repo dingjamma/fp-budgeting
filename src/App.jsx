@@ -14,9 +14,9 @@ export default class App extends React.Component {
     window.AV = AV
     AV.init(require('./av-config.json'))
     if (!AV.User.current()) {
-      AV.User.loginAnonymously().then(() => this.forceUpdate())
+      AV.User.loginAnonymously()
     } else {
-      AV.User.current().fetch().then(() => this.forceUpdate())
+      AV.User.current().fetch()
     }
   }
 

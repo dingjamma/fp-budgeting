@@ -1,6 +1,7 @@
 import React from 'react'
 import 'react-dropdown/style.css'
 import { Link } from 'react-router-dom'
+import AV from 'leancloud-storage'
 
 function Navbar () {
   return (
@@ -19,12 +20,20 @@ function Navbar () {
                 <a className='nav-link text-white text-uppercase ml-5' href='#'>  <i className='fas fa-home' /> <span className='sr-only'>(current)</span></a>
               </li>
             </Link>
-
-            <Link to='/logIn'>
-              <li className='nav-item active'>
-                <a className='nav-link text-white text-uppercase ml-5' href='#'> Login/Registration </a>
-              </li>
-            </Link>
+            {!AV.User.current() || AV.User.current().isAnonymous()
+              ? (
+                <Link to='/logIn'>
+                  <li className='nav-item active'>
+                    <a className='nav-link text-white text-uppercase ml-5' href='#'> Login/Registration </a>
+                  </li>
+                </Link>
+              )
+              : (
+                <li className='nav-item active text-white'>
+                  {AV.User.current().getUsername()}
+                  <button onClick={() => AV.User.loginAnonymously().then(() => window.location.reload())}>Sign out</button>
+                </li>
+              )}
 
             <Link to='/'>
               <li className='nav-item active'>
