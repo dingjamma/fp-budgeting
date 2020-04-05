@@ -1,10 +1,15 @@
 import React from 'react'
 import './App.css'
-import { HashRouter, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AV from 'leancloud-storage'
 import Home from './pages/Home'
 import LogIn from './pages/LogIn'
+import Footer from './pages/Footer'
+import Navbar from './components/Navbar'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Verify from './pages/Verify'
+
+
 
 export default class App extends React.Component {
   constructor (props) {
@@ -14,23 +19,17 @@ export default class App extends React.Component {
 
   render () {
     return (
-      <HashRouter hashType='hashbang'>
-        <nav>
-          <Link to='/'>Home</Link>
-          <Link to='/login'>Log in</Link>
-        </nav>
-        <Switch>
-          <Route path='/' exact>
-            <Home />
-          </Route>
-          <Route path='/login' exact>
-            <LogIn />
-          </Route>
-          <Route path='/verify' exact>
-            <Verify />
-          </Route>
-        </Switch>
-      </HashRouter>
-    )
+      <Router>
+      <div>
+      <Navbar />
+      <Switch>
+         <Route exact path="/" component={Home} />
+         <Route path="/logIn" component={LogIn} />
+         <Route path="/verify" component={Verify} />
+       </Switch>
+       {/* <Footer/> */}
+      </div>
+  </Router>
+);
   }
 }
