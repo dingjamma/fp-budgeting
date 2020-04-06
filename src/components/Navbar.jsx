@@ -1,8 +1,9 @@
 import React from 'react'
 import 'react-dropdown/style.css'
 import { Link } from 'react-router-dom'
+import AV from 'leancloud-storage'
 
-export default function Navbar () {
+function Navbar () {
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-dark'>
       <div className='container'>
@@ -25,31 +26,44 @@ export default function Navbar () {
 
         <div className=' menu collapse navbar-collapse ' id='navbarNav'>
           <ul className='navbar-nav ml-auto'>
-            <Link to='/'>
+            <li className='nav-item active'>
+              <Link to='/' className='nav-link text-white text-uppercase ml-5'>
+                {' '}
+                <i className='fas fa-home' />{' '}
+                <span className='sr-only'>(current)</span>
+              </Link>
+            </li>
+            {!AV.User.current() || AV.User.current().isAnonymous() ? (
               <li className='nav-item active'>
-                <span className='nav-link text-white text-uppercase ml-5'>
-                  <i className='fas fa-home' />
-                  <span className='sr-only'>(current)</span>
-                </span>
-              </li>
-            </Link>
-
-            <Link to='/logIn'>
-              <li className='nav-item active'>
-                <span className='nav-link text-white text-uppercase ml-5'>
+                <Link
+                  to='/login'
+                  className='nav-link text-white text-uppercase ml-5'
+                >
                   Login/Registration
-                </span>
+                </Link>
               </li>
-            </Link>
+            ) : (
+              <li className='nav-item active text-white'>
+                {AV.User.current().getUsername()}
+                <button
+                  className='btn btn-secondary'
+                  onClick={() =>
+                    AV.User.loginAnonymously().then(() =>
+                      window.location.reload()
+                    )
+                  }
+                >
+                  Sign out
+                </button>
+              </li>
+            )}
 
-            <Link to='/'>
-              <li className='nav-item active'>
-                <span className='nav-link text-white text-uppercase ml-5'>
-                  {' '}
-                  Budget{' '}
-                </span>
-              </li>
-            </Link>
+            <li className='nav-item active'>
+              <Link to='/' className='nav-link text-white text-uppercase ml-5'>
+                {' '}
+                Budget{' '}
+              </Link>
+            </li>
             <li className='nav-item active'>
               <div className='dropdown'>
                 <button
@@ -81,3 +95,5 @@ export default function Navbar () {
     </nav>
   )
 }
+
+export default Navbar

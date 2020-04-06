@@ -56,5 +56,8 @@
     "ignore": [
       "**/*.test.js"
     ]
+  },
+  "eslint": {
+    "extends": "standard"
   }
 }
