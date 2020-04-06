@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 import AV from 'leancloud-storage';
+//import Chart from "react-google-charts";
 
 class Chart extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class Chart extends Component {
             datasets: [
               {
                 label: 'Category',
-                data: [600, 900],
+                data: [[600,800], [500,900]],
                 backgroundColor: [
                   'rgba(255,99,132,0.6)',
                   'rgba(54,162,235,0.6)',
