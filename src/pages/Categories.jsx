@@ -1,6 +1,5 @@
 import React from 'react'
 import AV from 'leancloud-storage'
-import { Redirect } from 'react-router-dom'
 import BudgetInput from '../components/BudgetInput'
 
 export default class Categories extends React.Component {
@@ -151,9 +150,6 @@ export default class Categories extends React.Component {
   }
 
   render () {
-    if (!this.user) {
-      return <Redirect to='/' />
-    }
     return (
       <div className='container '>
         <div className='d-flex align-items-center justify-content-center category'>
