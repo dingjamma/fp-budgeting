@@ -22,20 +22,27 @@ export default class LogIn extends React.Component {
   render () {
     return (
       <div className='container'>
-
         <div className='login-form d-flex flex-column'>
           <h1 className='text-center'> Registration / Login</h1>
           <Label htmlFor='btn'>
             <button
-              id='btn' className='btn-lg btn-dark btn-block'
-              onClick={() => this.setState({ createAccount: !this.state.createAccount })}
-            >{this.state.createAccount ? 'Log in to an existing account' : 'Create a new account'}
+              id='btn'
+              className='btn-lg btn-dark btn-block'
+              onClick={() =>
+                this.setState({ createAccount: !this.state.createAccount })
+              }
+            >
+              {this.state.createAccount
+                ? 'Log in to an existing account'
+                : 'Create a new account'}
             </button>
           </Label>
           <br />
           <Label htmlFor='email'>
             <input
-              id='email' type='email' placeholder='Enter Your email'
+              id='email'
+              type='email'
+              placeholder='Enter Your email'
               onChange={event => this.setState({ email: event.target.value })}
               value={this.state.email}
             />
@@ -43,15 +50,21 @@ export default class LogIn extends React.Component {
           <br />
           <Label htmlFor='password'>
             <input
-              id='password' type='password' placeholder='Enter Your password'
-              onChange={event => this.setState({ password: event.target.value })}
+              id='password'
+              type='password'
+              placeholder='Enter Your password'
+              onChange={event =>
+                this.setState({ password: event.target.value })
+              }
               value={this.state.password}
             />
           </Label>
           <br />
           <Label className='btn2'>
             <button
-              id='btn2' className='btn-lg btn-dark btn-block' onClick={async () => {
+              id='btn2'
+              className='btn-lg btn-dark btn-block'
+              onClick={async () => {
                 try {
                   if (this.state.createAccount) {
                     let user = AV.User.current()
@@ -71,11 +84,12 @@ export default class LogIn extends React.Component {
                   console.error(e)
                 }
               }}
-            >{this.state.createAccount ? 'Register' : 'Log in'}
+            >
+              {this.state.createAccount ? 'Register' : 'Log in'}
             </button>
           </Label>
           <div className='text-center pt-3'>
-              Or Continue with your social media account
+            Or Continue with your social media account
           </div>
           <FacebookLoginButton />
           <br />
