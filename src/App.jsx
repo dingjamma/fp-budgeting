@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import AV from 'leancloud-storage'
 import Home from './pages/Home'
 import LogIn from './pages/LogIn'
-import Navbar from './components/Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Verify from './pages/Verify'
+import Navbar from './components/Navbar'
+import Categories from './pages/Categories'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -24,12 +25,19 @@ export default class App extends React.Component {
     return (
       <Router>
         <div>
-          {(!AV.User.current() || AV.User.current().isAnonymous()) && <div id='nm-acc-warn'>Your data may be deleted, please <Link to='/logIn'>login or create an account</Link> in order to save your data.</div>}
+          {(!AV.User.current() || AV.User.current().isAnonymous()) && (
+            <div id='nm-acc-warn'>
+              Your data may be deleted, please{' '}
+              <Link to='/logIn'>login or create an account</Link> in order to
+              save your data.
+            </div>
+          )}
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/login' component={LogIn} />
             <Route path='/verify' component={Verify} />
+            <Route path='/categories' component={Categories} />
           </Switch>
           {/* <Footer/> */}
         </div>
