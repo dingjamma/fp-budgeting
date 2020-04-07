@@ -64,8 +64,8 @@ export default class Home extends React.PureComponent {
 
         {/* <div style={{ display: 'flex', maxWidth: 900 }}> */}
             <Chart
-              width={600}
-              height={400}
+              width={900}
+              height={500}
               chartType="ColumnChart"
               loader={<div>Loading Chart</div>}
               data={[
@@ -73,12 +73,13 @@ export default class Home extends React.PureComponent {
                 ['Food', 550, 600],
                 ['Transport', 670, 900],
                 ['Household', 1100, 1300],
-                ['Recreation', 100, 300]
+                ['Recreation', 100, 300],
+                ['Mortgage', 500, 600]
               ]}
               options={{
                 title: 'Monthly Expense vs Budget Chart',
-                fontSize:25,
-                chartArea: { width: '100%' },
+                fontSize:15,
+                chartArea: { width: '70%' },
                 hAxis: {
                   title: 'Expense',
                   minValue: 0,
