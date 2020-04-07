@@ -1,7 +1,7 @@
 import React from 'react'
-//import Chart from '../components/Chart'
 import Chart from "react-google-charts";
 import AV from 'leancloud-storage';
+import Footer from './Footer'
 
 export default class Home extends React.PureComponent {
   constructor () {
@@ -60,7 +60,8 @@ export default class Home extends React.PureComponent {
 
   render () {
     return (
-      <div className='container d-flex flex-column align-items-center'>
+      <div>
+      <div className='container d-flex flex-column align-items-center home'>
         <br/><br/>
         <h1> Welcome !!! </h1>
         {/* <Chart chartData={this.state.chartData} legendPosition='bottom' /> */}
@@ -85,6 +86,9 @@ export default class Home extends React.PureComponent {
               }}
               legendToggle
             />
+            {/* <Footer/> */}
+      </div>
+      <Footer/> 
       </div>
     )
   }
