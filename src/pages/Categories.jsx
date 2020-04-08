@@ -1,6 +1,7 @@
 import React from 'react'
 import AV from 'leancloud-storage'
 import BudgetInput from '../components/BudgetInput'
+import Footer from './Footer'
 
 export default class Categories extends React.Component {
   constructor (props) {
@@ -151,10 +152,12 @@ export default class Categories extends React.Component {
 
   render () {
     return (
+    <div>
       <div className='container '>
         <div className='d-flex align-items-center justify-content-center category'>
           <div>
-            <h3>Manage Categories for {this.user.getUsername()}</h3>
+            {AV.User.current().isAnonymous() ? (<h3> Please Login and add your preferred Category</h3>) : (<h3>Manage Categories for {this.user.getUsername()}</h3>)}
+            
             <br />
             <br />
             {this.state.isLoading && <h5>Loading...</h5>}
@@ -210,7 +213,10 @@ export default class Categories extends React.Component {
             </button>
           </div>
         </div>
+     
       </div>
+      <Footer/>
+    </div>
     )
   }
 }

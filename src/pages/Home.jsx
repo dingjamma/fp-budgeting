@@ -19,9 +19,6 @@ export default class Home extends React.PureComponent {
             ) : (
               <BarChart/>
             )}
-
-       
-        {/* <Chart chartData={this.state.chartData} legendPosition='bottom' /> */}
       </div>
       <Footer/> 
       </div>

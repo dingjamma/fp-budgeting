@@ -5,7 +5,7 @@ import image3 from '../images/4.jpg'
 
 function Carosel(){
 return(
-    <div id="carouselExampleControls" className="carousel slide w-75" data-ride="carousel">
+    <div id="carouselExampleControls" className="carousel slide w-75 mycarouel" data-ride="carousel">
 
         <div className="carousel-inner">
             <div className="carousel-item active">

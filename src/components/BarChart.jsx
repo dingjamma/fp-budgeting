@@ -111,10 +111,10 @@ export default class BarChart extends React.PureComponent {
         <br/><br/>
 
           {!this.state.hasCategory ? (
-            // <div container d-flex flex-column align-items-center home>
-            //     <h4> Please add your expense and budget</h4>
+            <div>
+                <h3 className="text-center"> Please add your expense and budget</h3>
                 <Carosel></Carosel>
-            // </div>
+            </div>
           ) : (
             <Chart
               width={900}
