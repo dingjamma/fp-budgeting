@@ -1,6 +1,7 @@
 import React from 'react'
 import Chart from "react-google-charts";
 import AV from 'leancloud-storage';
+import Carosel from './Carousel'
 
 export default class BarChart extends React.PureComponent {
   constructor () {
@@ -9,6 +10,7 @@ export default class BarChart extends React.PureComponent {
       userCategories: [],
       userExpense: [],
       isLoading: true,
+      hasCategory: false,
       data : []  
     }
     this.user = AV.User.current()
@@ -37,6 +39,10 @@ export default class BarChart extends React.PureComponent {
         if (queryResult !== undefined) {
           //Grab Categories
           theCategories = queryResult.attributes.userCategories
+
+          if(theCategories.length > 0){
+            this.setState({hasCategory : true})
+          }
           //First Add The Legend Fields
           for (let i = 0; i < theCategories.length; i++) {
             categoryName =[...categoryName,theCategories[i].Category]
@@ -103,6 +109,13 @@ export default class BarChart extends React.PureComponent {
       <div>
       <div className='container d-flex flex-column align-items-center home'>
         <br/><br/>
+
+          {!this.state.hasCategory ? (
+            // <div container d-flex flex-column align-items-center home>
+            //     <h4> Please add your expense and budget</h4>
+                <Carosel></Carosel>
+            // </div>
+          ) : (
             <Chart
               width={900}
               height={500}
@@ -124,6 +137,9 @@ export default class BarChart extends React.PureComponent {
               }}
               legendToggle
             />
+          )}
+            
+         
       </div>
       </div>
     )
