@@ -8,7 +8,7 @@ export default class Expense extends React.Component {
     this.state = {
       userExpenses: [],
       userCategories: [],
-      isLoading: false,
+      isLoading: true,
       formCategory: 'Select',
       formDate: '',
       formDescription: '',
@@ -16,20 +16,19 @@ export default class Expense extends React.Component {
     }
     this.user = AV.User.current()
     this.fetchCategories = this.fetchCategories.bind(this)
+    this.fetchExpenses = this.fetchExpenses.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
     this.handleDate = this.handleDate.bind(this)
     this.handleDescription = this.handleDescription.bind(this)
     this.handleAmount = this.handleAmount.bind(this)
     this.addExpense = this.addExpense.bind(this)
-    // this.addExpense = this.addExpense.bind(this)
-    // this.updateDbExpense = this.updateDbExpense.bind(this)
-    // this.removeExpense = this.removeExpense.bind(this)
-    // this.updateExpense = this.updateExpense.bind(this)
-    // this.handleExpenseEntry = this.handleExpenseEntry.bind(this)
+    this.parseDate = this.parseDate.bind(this)
+    this.formatCurrency = this.formatCurrency.bind(this)
   }
 
   componentDidMount () {
     this.fetchCategories()
+    this.fetchExpenses()
   }
 
   async fetchCategories () {
@@ -59,56 +58,78 @@ export default class Expense extends React.Component {
     }
   }
 
-  async addExpense () {}
+  async addExpense () {
+    // Initialize Object
+    var UserExpense = AV.Object.extend('Expenses')
+    var userExpense = new UserExpense()
 
-  // async updateDbExpense (newExpenseArray) {
-  //  var UserExpense = AV.Object.extend('Expense')
-  // var userExpense = new UserExpense()
-  //
-  //  try {
-  //  var query = new AV.Query('Expense')
-  // query.equalTo('user', this.user.id)
-  //
-  //    await query.first().then(queryResult => {
-  //    userExpense = queryResult
-  //  console.log(userExpense.attributes)
-  // })
-  //
-  //    userExpense.set('userExpense', newExpenseArray)
-  //  console.log(userExpense)
-  // } catch (error) {
-  // console.log(JSON.stringify(error))
-  // }
+    // Add Validation Here
 
-  //   userExpense.save().then(response => this.fetchCategories())
-  // }
+    // Adjust Date
+    var adjustedDate = new Date(this.state.formDate)
+    adjustedDate.setTime(
+      adjustedDate.getTime() +
+        Math.abs(adjustedDate.getTimezoneOffset() * 60000)
+    )
 
-  // async removeExpense (expenseToRemove) {
-  //   var newExpenseArray = []
+    // Set Values of Fields
+    userExpense.set('user', this.user.id)
+    userExpense.set('date', adjustedDate)
+    userExpense.set('category', this.state.formCategory)
+    userExpense.set('description', this.state.formDescription)
+    userExpense.set('amount', this.state.formAmount)
 
-  //   newExpenseArray = this.state.userExpense.filter(
-  //     userExpense => userExpense.Expense !== expenseToRemove.Expense
-  //   )
+    userExpense.save().then(() => {
+      console.log(userExpense)
+      this.fetchExpenses()
+    })
+  }
 
-  //   this.updateDbExpense(newExpenseArray)
-  // }
+  async fetchExpenses () {
+    this.setState({ isLoading: true })
+    try {
+      var query = new AV.Query('Expenses')
+      query.equalTo('user', this.user.id)
 
-  // updateExpense (expenseToUpdate, newExpenseAmount) {
-  //   var newExpenseArray = []
+      await query.find().then(queryResult => {
+        console.log(queryResult)
+        this.setState({
+          userExpenses: queryResult
+        })
+      })
+    } catch (error) {
+      console.log(JSON.stringify(error))
+    } finally {
+      this.setState({ isLoading: false })
+    }
+  }
 
-  //   for (const userExpense of this.state.userExpenses) {
-  //     if (userExpense.Expense !== expenseToUpdate) {
-  //       newExpenseArray = [...newExpenseArray, userExpense]
-  //     } else {
-  //       newExpenseArray = [
-  //         ...newExpenseArray,
-  //         { Expense: expenseToUpdate, Expenses: parseFloat(newExpenseAmount) }
-  //       ]
-  //     }
-  //   }
+  async removeExpense (id) {
+    try {
+      var userExpense = AV.Object.createWithoutData('Expenses', id)
+      await userExpense.destroy().then(() => this.fetchExpenses())
+    } catch (error) {
+      console.log(JSON.stringify(error))
+    }
+  }
 
-  //   this.updateDbExpense(newExpenseArray)
-  // }
+  // Utility
+  parseDate (date) {
+    var parsed = new Date(date)
+    parsed.setHours(0, 0, 0, 0)
+    return `${parsed.getMonth() +
+      1}-${parsed.getDate()}-${parsed.getFullYear()}`
+  }
+
+  formatCurrency (amount) {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    })
+
+    return formatter.format(amount)
+  }
 
   // Form Entries
   handleSelect (e) {
@@ -188,7 +209,7 @@ export default class Expense extends React.Component {
               onChange={this.handleAmount}
             />
             <br />
-            <button onClick={this.addExpense}>
+            <button onClick={() => this.addExpense()}>
               <i className='far fa-plus-square' /> Add Expense
             </button>
             <br />
@@ -197,10 +218,6 @@ export default class Expense extends React.Component {
 
             {!this.state.isLoading && (
               <>
-                {this.state.userCategories.length === 0 &&
-                  !this.state.isLoading && (
-                    <p>No Categories Yet... Add One Below</p>
-                  )}
                 <table className='table table-striped table-dark text-center'>
                   <thead>
                     <tr>
@@ -212,26 +229,27 @@ export default class Expense extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {this.state.userCategories.map((userExpense, index) => (
+                    {this.state.userExpenses.map((userExpense, index) => (
                       <tr key={index}>
-                        <td>{userExpense.Expense}</td>
+                        <td>{this.parseDate(userExpense.attributes.date)}</td>
+                        <td>{userExpense.attributes.category}</td>
+                        <td>{userExpense.attributes.description}</td>
                         <td>
-                          <ExpenseInput
-                            userExpense={userExpense}
-                            updateBudget={this.updateBudget}
-                          />
+                          {this.formatCurrency(userExpense.attributes.amount)}
                         </td>
                         <td>
                           <button
-                            onClick={() => this.removeExpense(userExpense)}
+                            onClick={() => this.removeExpense(userExpense.id)}
                           >
                             <i className='far fa-trash-alt' />
                           </button>
                         </td>
                       </tr>
-                    ))} */}
+                    ))}
                   </tbody>
                 </table>
+                {this.state.userExpenses.length === 0 &&
+                  !this.state.isLoading && <p>No Expenses Yet...</p>}
               </>
             )}
           </div>
