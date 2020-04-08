@@ -11,7 +11,7 @@ export default class Expense extends React.Component {
       formCategory: 'Select',
       formDate: '',
       formDescription: '',
-      formAmount: 0
+      formAmount: '0'
     }
     this.user = AV.User.current()
     this.fetchCategories = this.fetchCategories.bind(this)
@@ -68,18 +68,27 @@ export default class Expense extends React.Component {
       return
     }
 
-    if (this.state.formDate === '') {
+    if (this.state.formDate.trim().length === 0) {
       alert('Please Select a Date')
       return
+    } else {
+      var validateDate = new Date(this.state.formDate)
+      if (validateDate.getFullYear() < 1980) {
+        alert('Year Must Be > 1980')
+        return
+      }
     }
 
-    if (this.state.formDescription === '') {
+    if (this.state.formDescription.trim().length === 0) {
       alert('Please enter a description')
       return
     }
 
-    if (this.state.formAmount >= 0) {
-      alert('Expense cannot be less than or equal to zero')
+    if (
+      this.state.formAmount.trim().length === 0 ||
+      this.state.formAmount < 0
+    ) {
+      alert('Invalid Expense Amount - Must Be Greater Than 0')
       return
     }
 
