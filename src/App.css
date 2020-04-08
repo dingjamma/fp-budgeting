@@ -18,6 +18,11 @@
   min-height: 800px;
 }
 
+.siteName{
+    font-family: cursive;
+    font-weight: bold;
+}
+
 #nm-acc-warn {
   background: rgb(209, 90, 90);
   color: white;

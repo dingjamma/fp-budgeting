@@ -88,10 +88,10 @@ export default class LogIn extends React.Component {
               {this.state.createAccount ? 'Register' : 'Log in'}
             </button>
           </Label>
-          <div className='text-center pt-3'>
+          {/* <div className='text-center pt-3'>
             Or Continue with your social media account
           </div>
-          <FacebookLoginButton />
+          <FacebookLoginButton /> */}
           <br />
           <Link to='/verify'>Problems logging in?</Link>
           {this.state.completed && <Redirect to='/' />}
