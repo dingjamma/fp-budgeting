@@ -1,6 +1,5 @@
 import React from 'react'
 import AV from 'leancloud-storage'
-import ExpenseInput from '../components/ExpenseInput'
 
 export default class Expense extends React.Component {
   constructor (props) {
@@ -64,6 +63,25 @@ export default class Expense extends React.Component {
     var userExpense = new UserExpense()
 
     // Add Validation Here
+    if (this.state.formCategory === 'Select') {
+      alert('Please Select a Category')
+      return
+    }
+
+    if (this.state.formDate === '') {
+      alert('Please Select a Date')
+      return
+    }
+
+    if (this.state.formDescription === '') {
+      alert('Please enter a description')
+      return
+    }
+
+    if (this.state.formAmount >= 0) {
+      alert('Expense cannot be less than or equal to zero')
+      return
+    }
 
     // Adjust Date
     var adjustedDate = new Date(this.state.formDate)
