@@ -7,6 +7,7 @@ export default class BarChart extends React.PureComponent {
     super()
     this.state = {
       userCategories: [],
+      userExpense: [],
       isLoading: true,
       data : []  
     }
@@ -18,57 +19,84 @@ export default class BarChart extends React.PureComponent {
   }
 
   fetchCategories = async () => {
-    // this.setState({ isLoading: true })
+    this.setState({ isLoading: true })
+    let categoryName = []
+    let categoryBudget =[]
+  //  let expense=[150,200,500]
+    let newData=[]
+    
     try {
       var query = new AV.Query('Categories')
+      var queryExpense = new AV.Query('Expenses')
+
       query.equalTo('user', this.user.id)
       await query.first().then(queryResult => {
         //Define New Arrays
-        let newData = []
         let theCategories = []
         //If Query is Valid
         if (queryResult !== undefined) {
           //Grab Categories
           theCategories = queryResult.attributes.userCategories
           //First Add The Legend Fields
-
-         // if(theCategories.length > 0 ){
-          newData = [...newData, ["Category", "Expense", "Budget"]];
-
           for (let i = 0; i < theCategories.length; i++) {
-            newData = [
-              ...newData,
-              [theCategories[i].Category, 200, theCategories[i].Budget]
-            ];
-
-
+            categoryName =[...categoryName,theCategories[i].Category]
+            categoryBudget =[...categoryBudget,theCategories[i].Budget]
           }
         }
-        console.log('New Data' + newData)
+     
+      })
 
-        //Update State
+      queryExpense.equalTo('user', this.user.id)
+      await queryExpense.find().then(queryExpenseResult => {
+       
+        //If Query is Valid
+        if (queryExpenseResult !== undefined) {
+          //Grab Expenses
+          this.setState({
+            userExpense: queryExpenseResult
+          })
+          //First Add The Legend Fields
+           //Define New Arrays
+          let theExpenses = this.state.userExpense
+
+
+          console.log("Category Name" + categoryName + " length: " +categoryName.length)
+          console.log("Category Budget" + categoryBudget)
+          console.log("expense length" + theExpenses.length)
+
+          newData = [...newData, ["Category", "Expense", "Budget"]];
+
+          for ( let cn = 0 ; cn < categoryName.length ; cn++){
+              let expense = 0
+
+             // Loop through the theExpense array, count the sum of all entries 
+              // for one category
+              for (let i = 0; i < theExpenses.length; i++) {
+                  if(theExpenses[i].attributes.category === categoryName[cn]){
+                    expense = expense + parseFloat(theExpenses[i].attributes.amount)
+                  }
+              }
+
+              //add that to the newData
+              newData = [
+                  ...newData,
+                  [categoryName[cn], expense, categoryBudget[cn]]
+                ];
+
+               }
+        }
+
         this.setState({
           data: newData
         })
-      // }else {
-      //   this.injectDemoData()
-      // }
       })
+
     } catch (error) {
       console.log(JSON.stringify(error))
     } finally {
       this.setState({ isLoading: false })
     }
   }
-
-  // injectDemoData = () => {
-  //   this.setState({
-  //     data: [
-  //       ['Category', 'Expense', 'Budget'],
-  //       ['Demo', 100, 200]
-  //     ]
-  //   })
-  // }
 
   render () {
     return (

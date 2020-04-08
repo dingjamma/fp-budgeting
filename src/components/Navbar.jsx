@@ -78,9 +78,9 @@ function Navbar () {
                   <Link to='/categories'>
                     <span className='dropdown-item'>Manage Categories</span>
                   </Link>
-                  <a className='dropdown-item' href='/'>
-                    Current Status
-                  </a>
+                  <Link to='/expenses'>
+                    <span className='dropdown-item'>Manage Expense</span>
+                  </Link>
                 </div>
               </div>
             </li>

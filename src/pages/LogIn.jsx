@@ -3,8 +3,6 @@ import AV from 'leancloud-storage'
 import { Redirect, Link } from 'react-router-dom'
 import { Label } from 'reactstrap'
 
-import { FacebookLoginButton } from 'react-social-login-buttons'
-
 export default class LogIn extends React.Component {
   constructor (props) {
     super(props)
