@@ -86,6 +86,9 @@ function Navbar () {
                   <a className='dropdown-item' href='/'>
                     Current Status
                   </a>
+                  <Link to='/expense'>
+                    <span className='dropdown-item'> Expense</span>
+                  </Link>
                 </div>
               </div>
             </li>

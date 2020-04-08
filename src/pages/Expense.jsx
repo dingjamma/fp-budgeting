@@ -75,26 +75,26 @@ export default class Expense extends React.Component {
   // }
 
   // async updateDbExpense (newExpenseArray) {
-  //   var UserExpense = AV.Object.extend('Expense')
-  //   var userExpense = new UserExpense()
+  //  var UserExpense = AV.Object.extend('Expense')
+    //var userExpense = new UserExpense()
+//
+  //  try {
+    //  var query = new AV.Query('Expense')
+      //query.equalTo('user', this.user.id)
+//
+  //    await query.first().then(queryResult => {
+    //    userExpense = queryResult
+      //  console.log(userExpense.attributes)
+      //})
+//
+  //    userExpense.set('userExpense', newExpenseArray)
+    //  console.log(userExpense)
+    //} catch (error) {
+     // console.log(JSON.stringify(error))
+    //}
 
-  //   try {
-  //     var query = new AV.Query('Expense')
-  //     query.equalTo('user', this.user.id)
-
-  //     await query.first().then(queryResult => {
-  //       userExpense = queryResult
-  //       console.log(userExpense.attributes)
-  //     })
-
-  //     userExpense.set('userExpense', newExpenseArray)
-  //     console.log(userExpense)
-  //   } catch (error) {
-  //     console.log(JSON.stringify(error))
-  //   }
-
-  //   userExpense.save().then(response => this.fetchExpense())
-  // }
+ //   userExpense.save().then(response => this.fetchCategories())
+  // } 
 
   // async removeExpense (expenseToRemove) {
   //   var newExpenseArray = []
@@ -127,8 +127,7 @@ export default class Expense extends React.Component {
   //   this.setState({
   //     newExpenseEntry: e.target.value
   //   })
-  // }
-
+  //
   render () {
     return (
       <div className='container '>
@@ -138,11 +137,19 @@ export default class Expense extends React.Component {
             <br />
             <br />
             <h5>Add Expense</h5>
-            <input placeholder='Date' />
             <br />
-            <input placeholder='Category Dropdown' />
+            <div>
+              <select>
+                <option value='Select'> Select Category </option>
+                {this.state.userCategories !== undefined && this.state.userCategories.map((category, index) => (
+                  <option key={index} value={category}> {category}</option>
+                ))}
+              </select>
+            </div>
             <br />
             <input placeholder='Description' />
+            <br />
+            <input type='date' />
             <br />
             <input type='number' placeholder='Amount' />
             <br />

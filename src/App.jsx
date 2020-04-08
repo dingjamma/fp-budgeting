@@ -39,7 +39,7 @@ export default class App extends React.Component {
             <Route path='/login' component={LogIn} />
             <Route path='/verify' component={Verify} />
             <Route path='/categories' component={Categories} />
-            <Route path='/expenses' component={Expense} />
+            <Route path='/expense' component={Expense} />
           </Switch>
           {/* <Footer/> */}
         </div>
