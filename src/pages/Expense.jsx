@@ -14,7 +14,6 @@ export default class Expense extends React.Component {
     }
     this.user = AV.User.current()
     this.fetchCategories = this.fetchCategories.bind(this)
-    // this.fetchExpense = this.fetchExpense.bind(this)
     // this.addExpense = this.addExpense.bind(this)
     // this.updateDbExpense = this.updateDbExpense.bind(this)
     // this.removeExpense = this.removeExpense.bind(this)
@@ -46,33 +45,13 @@ export default class Expense extends React.Component {
         console.log(categoryList)
         // Update State
         this.setState({
-          userCategories: theCategories
+          userCategories: categoryList
         })
       })
     } catch (error) {
       console.log(JSON.stringify(error))
     }
   }
-
-  // async fetchExpense () {
-  //   this.setState({ isLoading: true })
-
-  //   try {
-  //     var query = new AV.Query('Categories')
-  //     query.equalTo('user', this.user.id)
-
-  //     await query.find().then(queryResult => {
-  //       console.log(queryResult[0].attributes.userExpense)
-  //       this.setState({
-  //         userExpense: queryResult[0].attributes.userExpense
-  //       })
-  //     })
-  //   } catch (error) {
-  //     console.log(JSON.stringify(error))
-  //   } finally {
-  //     this.setState({ isLoading: false })
-  //   }
-  // }
 
   // async updateDbExpense (newExpenseArray) {
   //  var UserExpense = AV.Object.extend('Expense')
@@ -147,8 +126,6 @@ export default class Expense extends React.Component {
               </select>
             </div>
             <br />
-            <input placeholder='Description' />
-            <br />
             <input type='date' />
             <br />
             <input type='number' placeholder='Amount' />
@@ -162,18 +139,21 @@ export default class Expense extends React.Component {
 
             {!this.state.isLoading && (
               <>
+                {this.state.userCategories.length === 0 &&
+                !this.state.isLoading && (
+                  <p>No Categories Yet... Add One Below</p>
+                )}
                 <table className='table table-striped table-dark text-center'>
                   <thead>
                     <tr>
                       <th>Date</th>
                       <th>Category</th>
-                      <th>Description</th>
                       <th>Amount</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {this.state.userCategories.map((userExpense, index) => (
+                    {this.state.userCategories.map((userExpense, index) => (
                       <tr key={index}>
                         <td>{userExpense.Expense}</td>
                         <td>
@@ -190,7 +170,7 @@ export default class Expense extends React.Component {
                           </button>
                         </td>
                       </tr>
-                    ))} */}
+                    ))}
                   </tbody>
                 </table>
               </>
