@@ -90,6 +90,7 @@ export default class Expense extends React.Component {
     try {
       var query = new AV.Query('Expenses')
       query.equalTo('user', this.user.id)
+      query.ascending('date')
 
       await query.find().then(queryResult => {
         console.log(queryResult)
