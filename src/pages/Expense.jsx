@@ -35,7 +35,7 @@ export default class Expense extends React.Component {
   async fetchCategories () {
     try {
       var query = new AV.Query('Categories')
-      query.equalTo('user', this.user.id)
+      query.equalTo('user', this.user)
       await query.first().then(queryResult => {
         // Define Category Array
         let categoryList = []
@@ -100,7 +100,7 @@ export default class Expense extends React.Component {
     )
 
     // Set Values of Fields
-    userExpense.set('user', this.user.id)
+    userExpense.set('user', this.user)
     userExpense.set('date', adjustedDate)
     userExpense.set('category', this.state.formCategory)
     userExpense.set('description', this.state.formDescription)
@@ -115,7 +115,7 @@ export default class Expense extends React.Component {
     this.setState({ isLoading: true })
     try {
       var query = new AV.Query('Expenses')
-      query.equalTo('user', this.user.id)
+      query.equalTo('user', this.user)
       query.ascending('date')
 
       await query.find().then(queryResult => {

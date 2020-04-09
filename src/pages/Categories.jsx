@@ -23,7 +23,7 @@ export default class Categories extends React.Component {
 
     try {
       var query = new AV.Query('Categories')
-      query.equalTo('user', this.user.id)
+      query.equalTo('user', this.user)
 
       await query.find().then(queryResult => {
         this.setState({
@@ -62,7 +62,7 @@ export default class Categories extends React.Component {
     if (!duplicate) {
       try {
         var query = new AV.Query('Categories')
-        query.equalTo('user', this.user.id)
+        query.equalTo('user', this.user)
 
         await query.first().then(queryResult => {
           if (queryResult !== undefined) {
@@ -75,7 +75,7 @@ export default class Categories extends React.Component {
       }
 
       if (firstInsert) {
-        userCategories.set('user', this.user.id)
+        userCategories.set('user', this.user)
       }
 
       var categoryToAdd = { Category: categoryNameToAdd, Budget: 0 }
@@ -98,7 +98,7 @@ export default class Categories extends React.Component {
 
     try {
       var query = new AV.Query('Categories')
-      query.equalTo('user', this.user.id)
+      query.equalTo('user', this.user)
 
       await query.first().then(queryResult => {
         userCategories = queryResult
