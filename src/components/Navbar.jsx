@@ -5,7 +5,7 @@ import AV from 'leancloud-storage'
 
 function Navbar () {
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-dark'>
+    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
       <div className='container'>
         <Link className='nav-link text-white text-uppercase ml-5' to='/'>
           {' '}
@@ -13,19 +13,19 @@ function Navbar () {
           <h1 className='siteName'>SmartCents</h1>
           <span className='sr-only'>(current)</span>
         </Link>
-        <button
-          className='navbar-toggler'
-          type='button'
-          data-toggle='collapse'
-          data-target='#navbarSupportedContent'
-          aria-controls='navbarSupportedContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-        >
-          <span className='navbar-toggler-icon' />
-        </button>
+      
+          <button className="navbar-toggler text-white" 
+                  type="button" 
+                  data-toggle="collapse" 
+                  data-target="#navbarNav" 
+                  aria-controls="navbarNav" 
+                  aria-expanded="false" 
+                  aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+          </button>
+        
 
-        <div className=' menu collapse navbar-collapse ' id='navbarNav'>
+        <div className='collapse navbar-collapse' id='navbarNav'>
           <ul className='navbar-nav ml-auto'>
             <li className='nav-item active'>
               <Link to='/' className='nav-link text-white text-uppercase ml-5'>

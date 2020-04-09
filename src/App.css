@@ -20,7 +20,12 @@
 }
 
 .profile{
-  min-width: 500px;
+  max-width: 500px;
+  /* min-width: 300px; */
+}
+
+.chart{
+  min-width: 900px;
 }
 .siteName{
     font-family: cursive;
@@ -45,4 +50,10 @@
 
 #nm-acc-warn a {
   color: rgb(127, 173, 224);
+}
+
+@media (max-width:800px){
+  .siteName{
+    text-align: center;
+  }
 }

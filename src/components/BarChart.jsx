@@ -110,7 +110,7 @@ export default class BarChart extends React.PureComponent {
 
   render () {
     return (
-      <div>
+      <div className='container '>
         <div>
           <br />
           <br />
