@@ -32,8 +32,8 @@ export default class App extends React.Component {
           {(!AV.User.current() || AV.User.current().isAnonymous()) && (
             <div id='nm-acc-warn' className='text-center'>
                   Your data may be deleted, please{' '}
-                  <Link to='/logIn'>login or create an account</Link> in order to
-                  save your data. 
+              <Link to='/logIn'>login or create an account</Link> in order to
+                  save your data.
             </div>
           )}
           <Navbar />

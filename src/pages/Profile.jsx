@@ -42,34 +42,34 @@ export default class Profile extends React.Component {
   render () {
     return (
       <div>
-        <div className="container">
+        <div className='container'>
           <div className='d-flex flex-column align-items-center w-75 size'>
-          <br/>
-          <h1>User Profile</h1>
-          <br/>
-          {/* <h2>Basic Information</h2> */}
-           <form className='profile'>
-              <div className="form-group">
+            <br />
+            <h1>User Profile</h1>
+            <br />
+            {/* <h2>Basic Information</h2> */}
+            <form className='profile'>
+              <div className='form-group'>
                 <label htmlFor='username' className='font-weight-bold'>Name : </label>
 
-                <input id='username' className="form-control" value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
+                <input id='username' className='form-control' value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
               </div>
 
-              <div className="form-group">
+              <div className='form-group'>
                 <label htmlFor='email' className='font-weight-bold'>Email : </label>
 
-                <input id='email' className="form-control"  value={this.state.email}  onChange={e => this.setState({ email: e.target.value })} />
+                <input id='email' className='form-control' value={this.state.email} onChange={e => this.setState({ email: e.target.value })} />
               </div>
 
-              <div className="form-group">
-              <button className="btn btn-success" onClick={this.handlePasswordReset.bind(this)}>Reset Password</button>
+              <div className='form-group'>
+                <button className='btn btn-success' onClick={this.handlePasswordReset.bind(this)}>Reset Password</button>
               </div>
-              <div className="form-group">
-              <button className="btn btn-primary" onClick={this.handleSave.bind(this)}>Save</button> 
+              <div className='form-group'>
+                <button className='btn btn-primary' onClick={this.handleSave.bind(this)}>Save</button>
               </div>
             </form>
-                
-            </div>
+
+          </div>
         </div>
 
       </div>

@@ -43,7 +43,7 @@ export default class BarChart extends React.PureComponent {
         0
       )
 
-      query.equalTo('user', this.user.id)
+      query.equalTo('user', this.user)
       await query.first().then(queryResult => {
         // Define New Arrays
         let theCategories = []
@@ -63,7 +63,7 @@ export default class BarChart extends React.PureComponent {
         }
       })
 
-      queryExpense.equalTo('user', this.user.id)
+      queryExpense.equalTo('user', this.user)
       queryExpense.greaterThanOrEqualTo('date', firstOfMonth)
       queryExpense.lessThanOrEqualTo('date', lastOfMonth)
       await queryExpense.find().then(queryExpenseResult => {
