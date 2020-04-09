@@ -1,7 +1,7 @@
 import React from 'react'
 import Chart from "react-google-charts";
 import AV from 'leancloud-storage';
-import Carosel from './Carousel'
+import Carousel from './Carousel'
 
 export default class BarChart extends React.PureComponent {
   constructor () {
@@ -107,15 +107,16 @@ export default class BarChart extends React.PureComponent {
   render () {
     return (
       <div>
-      <div className='container d-flex flex-column align-items-center home'>
+      <div>
         <br/><br/>
 
           {!this.state.hasCategory ? (
-            <div>
+            <div className='container d-flex flex-column align-items-center home'>
                 <h3 className="text-center"> Please add your expense and budget</h3>
-                <Carosel></Carosel>
+                <Carousel></Carousel>
             </div>
           ) : (
+          <div  className='container d-flex flex-column align-items-center home'>
             <Chart
               width={900}
               height={500}
@@ -137,6 +138,7 @@ export default class BarChart extends React.PureComponent {
               }}
               legendToggle
             />
+          </div>
           )}
             
          
