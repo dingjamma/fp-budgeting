@@ -2,7 +2,6 @@
 import React from 'react'
 import AV from 'leancloud-storage'
 import BudgetInput from '../components/BudgetInput'
-import Footer from './Footer'
 
 export default class Categories extends React.Component {
   constructor (props) {
@@ -212,7 +211,6 @@ export default class Categories extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }

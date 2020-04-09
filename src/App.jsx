@@ -9,6 +9,7 @@ import Verify from './pages/Verify'
 import Navbar from './components/Navbar'
 import Categories from './pages/Categories'
 import Expense from './pages/Expense'
+import Footer from './components/Footer'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -41,7 +42,7 @@ export default class App extends React.Component {
             <Route path='/categories' component={Categories} />
             <Route path='/expenses' component={Expense} />
           </Switch>
-          {/* <Footer/> */}
+          <Footer />
         </div>
       </Router>
     )
