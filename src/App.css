@@ -8,23 +8,38 @@
   margin: auto;
 }
 
-.category {
-  width: 800px;
+.size {
+  max-width: 800px;
   height: 800px;
   /* border: 1px solid red; */
 }
 
 .home{
   min-height: 800px;
+  
 }
 
+.profile{
+  max-width: 500px;
+  /* min-width: 300px; */
+}
+
+.chart{
+  min-width: 900px;
+}
 .siteName{
     font-family: cursive;
     font-weight: bold;
 }
 
-.imgCarosel{
-  border: 1px solid red;
+.about{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  font-weight: lighter;
+}
+
+.expenseForm{
+  max-width: 300px;
 }
 
 #nm-acc-warn {
@@ -35,4 +50,15 @@
 
 #nm-acc-warn a {
   color: rgb(127, 173, 224);
+}
+
+@media (max-width:800px){
+  .siteName{
+    text-align: center;
+  }
+
+  .size {
+    max-width: 500px;
+    /* border: 1px solid red; */
+  }
 }

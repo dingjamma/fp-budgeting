@@ -31,6 +31,18 @@ export default class BarChart extends React.PureComponent {
       var query = new AV.Query('Categories')
       var queryExpense = new AV.Query('Expenses')
 
+      var currentDate = new Date()
+      var firstOfMonth = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        1
+      )
+      var lastOfMonth = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        0
+      )
+
       query.equalTo('user', this.user.id)
       await query.first().then(queryResult => {
         // Define New Arrays
@@ -52,6 +64,8 @@ export default class BarChart extends React.PureComponent {
       })
 
       queryExpense.equalTo('user', this.user.id)
+      queryExpense.greaterThanOrEqualTo('date', firstOfMonth)
+      queryExpense.lessThanOrEqualTo('date', lastOfMonth)
       await queryExpense.find().then(queryExpenseResult => {
         // If Query is Valid
         if (queryExpenseResult !== undefined) {
@@ -96,7 +110,7 @@ export default class BarChart extends React.PureComponent {
 
   render () {
     return (
-      <div>
+      <div className='container '>
         <div>
           <br />
           <br />

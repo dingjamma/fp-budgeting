@@ -149,7 +149,7 @@ export default class Categories extends React.Component {
     return (
       <div>
         <div className='container '>
-          <div className='d-flex align-items-center justify-content-center category'>
+          <div className='d-flex align-items-center justify-content-center size'>
             <div>
               {AV.User.current().isAnonymous() ? (
                 <h3>Manage Categories for Demo User</h3>
