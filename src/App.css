@@ -9,7 +9,7 @@
 }
 
 .size {
-  width: 800px;
+  max-width: 800px;
   height: 800px;
   /* border: 1px solid red; */
 }
@@ -55,5 +55,10 @@
 @media (max-width:800px){
   .siteName{
     text-align: center;
+  }
+
+  .size {
+    max-width: 500px;
+    /* border: 1px solid red; */
   }
 }

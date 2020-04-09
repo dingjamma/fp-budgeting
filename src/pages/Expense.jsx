@@ -200,7 +200,7 @@ export default class Expense extends React.Component {
           <br/>
           <br/>
           <div className='row'>
-            <div className='col-6'>
+            <div className='col-md-6'>
                 <h5 className='text-center'>Add Expense</h5>
                 <form className='expenseForm'>
                   <div className="form-group">
@@ -260,7 +260,7 @@ export default class Expense extends React.Component {
             </form>
             {/* Form ended */}
             </div>
-            <div className='col-6'>
+            <div className='col-md-6'>
                 {this.state.isLoading && <h5>Loading...</h5>}
                 {!this.state.isLoading && (
                   <>
