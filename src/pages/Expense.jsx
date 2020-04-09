@@ -41,12 +41,10 @@ export default class Expense extends React.Component {
         if (queryResult !== undefined) {
           // Grab Categories
           var theCategories = queryResult.attributes.userCategories
-          console.log(theCategories.length)
           for (let i = 0; i < theCategories.length; i++) {
             categoryList = [...categoryList, theCategories[i].Category]
           }
         }
-        console.log(categoryList)
         // Update State
         this.setState({
           userCategories: categoryList
@@ -107,7 +105,6 @@ export default class Expense extends React.Component {
     userExpense.set('amount', this.state.formAmount)
 
     userExpense.save().then(() => {
-      console.log(userExpense)
       this.fetchExpenses()
     })
   }
@@ -120,7 +117,6 @@ export default class Expense extends React.Component {
       query.ascending('date')
 
       await query.find().then(queryResult => {
-        console.log(queryResult)
         this.setState({
           userExpenses: queryResult
         })
@@ -164,32 +160,24 @@ export default class Expense extends React.Component {
     this.setState({
       formCategory: e.target.value
     })
-
-    console.log('Select: ' + e.target.value)
   }
 
   handleDate (e) {
     this.setState({
       formDate: e.target.value
     })
-
-    console.log('Date: ' + e.target.value)
   }
 
   handleDescription (e) {
     this.setState({
       formDescription: e.target.value
     })
-
-    console.log('Description: ' + e.target.value)
   }
 
   handleAmount (e) {
     this.setState({
       formAmount: e.target.value
     })
-
-    console.log('Amount: ' + e.target.value)
   }
 
   render () {
@@ -197,7 +185,11 @@ export default class Expense extends React.Component {
       <div className='container '>
         <div className='d-flex align-items-center justify-content-center category'>
           <div>
-            <h3>Enter Expense for {this.user.getUsername()}</h3>
+            {AV.User.current().isAnonymous() ? (
+              <h3>Manage Expenses for Demo User</h3>
+            ) : (
+              <h3>Manage Expenses for {this.user.getUsername()}</h3>
+            )}
             <br />
             <br />
             <h5>Add Expense</h5>
