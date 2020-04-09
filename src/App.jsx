@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import AV from 'leancloud-storage'
 import Home from './pages/Home'
 import LogIn from './pages/LogIn'
@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import Categories from './pages/Categories'
 import Expense from './pages/Expense'
 import Footer from './components/Footer'
+import Profile from './pages/Profile'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -25,7 +26,7 @@ export default class App extends React.Component {
 
   render () {
     return (
-      <Router>
+      <Router hashType='hashbang'>
         <div>
           {(!AV.User.current() || AV.User.current().isAnonymous()) && (
             <div id='nm-acc-warn'>
@@ -41,6 +42,7 @@ export default class App extends React.Component {
             <Route path='/verify' component={Verify} />
             <Route path='/categories' component={Categories} />
             <Route path='/expenses' component={Expense} />
+            <Route path='/profile' component={Profile} />
           </Switch>
           <Footer />
         </div>
