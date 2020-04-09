@@ -1,7 +1,7 @@
+/* global alert */
 import React from 'react'
 import AV from 'leancloud-storage'
 import BudgetInput from '../components/BudgetInput'
-import Footer from './Footer'
 
 export default class Categories extends React.Component {
   constructor (props) {
@@ -37,7 +37,7 @@ export default class Categories extends React.Component {
     }
   }
 
-  addCategory = async () => {
+  handleAddCategory = async () => {
     let firstInsert = true
     let duplicate = false
     var UserCategories = AV.Object.extend('Categories')
@@ -53,7 +53,7 @@ export default class Categories extends React.Component {
         categoryNameToAdd.slice(1).toLowerCase()
     }
 
-    for (let userCategory of this.state.userCategories) {
+    for (const userCategory of this.state.userCategories) {
       if (userCategory.Category === categoryNameToAdd) {
         duplicate = true
       }
@@ -125,7 +125,7 @@ export default class Categories extends React.Component {
   updateBudget = (categoryToUpdate, newBudgetAmount) => {
     var newCategoryArray = []
 
-    for (let userCategory of this.state.userCategories) {
+    for (const userCategory of this.state.userCategories) {
       if (userCategory.Category !== categoryToUpdate) {
         newCategoryArray = [...newCategoryArray, userCategory]
       } else {
@@ -162,7 +162,7 @@ export default class Categories extends React.Component {
               {this.state.isLoading && <h5>Loading...</h5>}
 
               {this.state.userCategories.length > 0 && !this.state.isLoading && (
-                <React.Fragment>
+                <>
                   <table className='table table-striped table-dark text-center'>
                     <thead>
                       <tr>
@@ -185,20 +185,18 @@ export default class Categories extends React.Component {
                             <button
                               onClick={() => this.removeCategory(userCategory)}
                             >
-                              <i className='far fa-trash-alt'></i>
+                              <i className='far fa-trash-alt' />
                             </button>
                           </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
-                </React.Fragment>
+                </>
               )}
 
               {this.state.userCategories.length === 0 &&
-                !this.state.isLoading && (
-                  <p>No Categories Yet... Add One Below</p>
-                )}
+                !this.state.isLoading && <p>No Categories Yet... Add One Below</p>}
 
               <input
                 value={this.state.newCategoryEntry}
@@ -206,14 +204,13 @@ export default class Categories extends React.Component {
                 placeholder='Add Category'
               />
 
-              <button onClick={this.addCategory}>
+              <button onClick={this.handleAddCategory}>
                 {' '}
-                <i className='far fa-plus-square'></i>{' '}
+                <i className='far fa-plus-square' />{' '}
               </button>
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }

@@ -1,6 +1,5 @@
 import React from 'react'
 import AV from 'leancloud-storage'
-import Footer from './Footer'
 import BarChart from '../components/BarChart'
 import Carosel from '../components/Carousel'
 
@@ -20,7 +19,6 @@ export default class Home extends React.PureComponent {
             <BarChart />
           )}
         </div>
-        <Footer />
       </div>
     )
   }

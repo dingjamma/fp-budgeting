@@ -27,8 +27,7 @@ export default class LogIn extends React.Component {
               id='btn'
               className='btn-lg btn-dark btn-block'
               onClick={() =>
-                this.setState({ createAccount: !this.state.createAccount })
-              }
+                this.setState({ createAccount: !this.state.createAccount })}
             >
               {this.state.createAccount
                 ? 'Log in to an existing account'
@@ -52,8 +51,7 @@ export default class LogIn extends React.Component {
               type='password'
               placeholder='Enter Your password'
               onChange={event =>
-                this.setState({ password: event.target.value })
-              }
+                this.setState({ password: event.target.value })}
               value={this.state.password}
             />
           </Label>

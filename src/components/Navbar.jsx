@@ -7,12 +7,12 @@ function Navbar () {
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-dark'>
       <div className='container'>
-        <a className='nav-link text-white text-uppercase ml-5' href='/'>
+        <Link className='nav-link text-white text-uppercase ml-5' to='/'>
           {' '}
           {/* <i className='fas fa-file-invoice-dollar fa-3x' />{' '} */}
           <h1 className='siteName'>SmartCents</h1>
           <span className='sr-only'>(current)</span>
-        </a>
+        </Link>
         <button
           className='navbar-toggler'
           type='button'
@@ -45,14 +45,12 @@ function Navbar () {
               </li>
             ) : (
               <li className='nav-item active text-white'>
-                {AV.User.current().getUsername()}
+                <Link to='/profile' className='text-white'>{AV.User.current().getUsername()}</Link>
                 <button
                   className='btn btn-secondary'
                   onClick={() =>
                     AV.User.loginAnonymously().then(() =>
-                      window.location.reload()
-                    )
-                  }
+                      window.location.reload())}
                 >
                   Sign out
                 </button>
