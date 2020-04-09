@@ -1,6 +1,5 @@
 import React from 'react'
 import AV from 'leancloud-storage'
-import Footer from './Footer'
 
 export default class Expense extends React.Component {
   constructor (props) {
@@ -12,7 +11,7 @@ export default class Expense extends React.Component {
       formCategory: 'Select',
       formDate: '',
       formDescription: '',
-      formAmount: 0
+      formAmount: '0'
     }
     this.user = AV.User.current()
     this.fetchCategories = this.fetchCategories.bind(this)
@@ -64,6 +63,34 @@ export default class Expense extends React.Component {
     var userExpense = new UserExpense()
 
     // Add Validation Here
+    if (this.state.formCategory === 'Select') {
+      alert('Please Select a Category')
+      return
+    }
+
+    if (this.state.formDate.trim().length === 0) {
+      alert('Please Select a Date')
+      return
+    } else {
+      var validateDate = new Date(this.state.formDate)
+      if (validateDate.getFullYear() < 1980) {
+        alert('Year Must Be > 1980')
+        return
+      }
+    }
+
+    if (this.state.formDescription.trim().length === 0) {
+      alert('Please enter a description')
+      return
+    }
+
+    if (
+      this.state.formAmount.trim().length === 0 ||
+      this.state.formAmount < 0
+    ) {
+      alert('Invalid Expense Amount - Must Be Greater Than 0')
+      return
+    }
 
     // Adjust Date
     var adjustedDate = new Date(this.state.formDate)
@@ -90,6 +117,7 @@ export default class Expense extends React.Component {
     try {
       var query = new AV.Query('Expenses')
       query.equalTo('user', this.user.id)
+      query.ascending('date')
 
       await query.find().then(queryResult => {
         console.log(queryResult)
@@ -166,12 +194,10 @@ export default class Expense extends React.Component {
 
   render () {
     return (
-    <div>
       <div className='container '>
         <div className='d-flex align-items-center justify-content-center category'>
           <div>
-          {AV.User.current().isAnonymous() ? (<h3> Please Login and add your Expenses</h3>) : (<h3>Enter Expense for {this.user.getUsername()}</h3>)}
-            
+            <h3>Enter Expense for {this.user.getUsername()}</h3>
             <br />
             <br />
             <h5>Add Expense</h5>
@@ -257,8 +283,6 @@ export default class Expense extends React.Component {
           </div>
         </div>
       </div>
-    <Footer/>
-    </div>
     )
   }
 }
