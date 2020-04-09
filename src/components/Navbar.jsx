@@ -15,7 +15,7 @@ function Navbar () {
         </Link>
 
         <button
-          className='navbar-toggler text-white'
+          className='navbar-toggler text-white m-auto'
           type='button'
           data-toggle='collapse'
           data-target='#navbarNav'
@@ -28,7 +28,7 @@ function Navbar () {
 
         <div className='collapse navbar-collapse' id='navbarNav'>
           <ul className='navbar-nav ml-auto'>
-            <li className='nav-item active'>
+            <li className='nav-item active m-auto'>
               <Link to='/' className='nav-link text-white text-uppercase ml-5'>
                 {' '}
                 <i className='fas fa-home' />{' '}
@@ -36,7 +36,7 @@ function Navbar () {
               </Link>
             </li>
             {!AV.User.current() || AV.User.current().isAnonymous() ? (
-              <li className='nav-item active'>
+              <li className='nav-item active m-auto'>
                 <Link
                   to='/login'
                   className='nav-link text-white text-uppercase ml-5'
@@ -45,7 +45,7 @@ function Navbar () {
                 </Link>
               </li>
             ) : (
-              <li className='nav-item active text-white'>
+              <li className='nav-item active text-white m-auto'>
                 <Link to='/profile' className='text-white'>{AV.User.current().getUsername()}</Link>
                 <button
                   className='btn btn-secondary'
@@ -58,18 +58,11 @@ function Navbar () {
               </li>
             )}
 
-            <li className='nav-item active'>
-              <div className='dropdown'>
-                <button
-                  className='btn btn-secondary dropdown-toggle'
-                  type='button'
-                  id='dropdownMenuButton'
-                  data-toggle='dropdown'
-                  aria-haspopup='true'
-                  aria-expanded='false'
-                >
-                  Expense Tracker
-                </button>
+            <li className='nav-item dropdown active m-auto'>
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Expense Tracker
+                </a>
+
                 <div
                   className='dropdown-menu'
                   aria-labelledby='dropdownMenuButton'
@@ -84,7 +77,7 @@ function Navbar () {
                     <span className='dropdown-item'>Manage Expense</span>
                   </Link>
                 </div>
-              </div>
+              {/* </div> */}
             </li>
           </ul>
         </div>

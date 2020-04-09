@@ -112,9 +112,6 @@ export default class BarChart extends React.PureComponent {
     return (
       <div className='container '>
         <div>
-          <br />
-          <br />
-
           {!this.state.hasCategory ? (
             <div className='container d-flex flex-column align-items-center home'>
               <h3 className='text-center'>
@@ -126,7 +123,7 @@ export default class BarChart extends React.PureComponent {
           ) : (
             <div className='container d-flex flex-column align-items-center home'>
               <Chart
-                width={900}
+                width='100%'
                 height={500}
                 chartType='ColumnChart'
                 loader={<div>Loading Chart</div>}
