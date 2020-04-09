@@ -185,122 +185,121 @@ export default class Expense extends React.Component {
   render () {
     return (
       <div className='container size'>
-        
-          <br/>
-          <br/>
-          <div className='row'>
-              <div className='col text-center'>
-                    {AV.User.current().isAnonymous() ? (
-                      <h3>Manage Expenses for Demo User</h3>
-                    ) : (
-                      <h3>Manage Expenses for {this.user.getUsername()}</h3>
-                    )}
-              </div>
+
+        <br />
+        <br />
+        <div className='row'>
+          <div className='col text-center'>
+            {AV.User.current().isAnonymous() ? (
+              <h3>Manage Expenses for Demo User</h3>
+            ) : (
+              <h3>Manage Expenses for {this.user.getUsername()}</h3>
+            )}
           </div>
-          <br/>
-          <br/>
-          <div className='row'>
-            <div className='col-md-6'>
-                <h5 className='text-center'>Add Expense</h5>
-                <form className='expenseForm'>
-                  <div className="form-group">
-                      <select
-                        value={this.state.formCategory}
-                        onChange={this.handleSelect}
-                      >
-                        <option value='Select'> Select Category </option>
-                        {this.state.userCategories !== undefined &&
+        </div>
+        <br />
+        <br />
+        <div className='row'>
+          <div className='col-md-6'>
+            <h5 className='text-center'>Add Expense</h5>
+            <form className='expenseForm'>
+              <div className='form-group'>
+                <select
+                  value={this.state.formCategory}
+                  onChange={this.handleSelect}
+                >
+                  <option value='Select'> Select Category </option>
+                  {this.state.userCategories !== undefined &&
                           this.state.userCategories.map((category, index) => (
                             <option key={index} value={category}>
                               {' '}
                               {category}
                             </option>
                           ))}
-                      </select>
-                  </div>
+                </select>
+              </div>
 
-                  <div className="form-group">
+              <div className='form-group'>
 
-                    <input
-                      type='date'
-                      value={this.state.formDate}
-                      onChange={this.handleDate}
-                    /> 
-                  </div>
+                <input
+                  type='date'
+                  value={this.state.formDate}
+                  onChange={this.handleDate}
+                />
+              </div>
 
-                  <div className="form-group">
-                      <label htmlFor='description' className='font-weight-bold'>Description : </label>
-                      <input
-                      id='description'
-                      className='form-control'
-                      placeholder='Description'
-                      value={this.state.formDescription}
-                      onChange={this.handleDescription}
-                    />
-                  </div>
+              <div className='form-group'>
+                <label htmlFor='description' className='font-weight-bold'>Description : </label>
+                <input
+                  id='description'
+                  className='form-control'
+                  placeholder='Description'
+                  value={this.state.formDescription}
+                  onChange={this.handleDescription}
+                />
+              </div>
 
-                  
-                  <div className="form-group">
-                      <label htmlFor='amount' className='font-weight-bold'>Amount : </label>
-                      <input
-                        id='amount'
-                        className='form-control'
-                        type='number'
-                        placeholder='Amount'
-                        value={this.state.formAmount}
-                        onChange={this.handleAmount}
-                      />
-                  </div>
-                  
-                  <div className="form-group">
-                      <button onClick={() => this.addExpense()}>
-                      <i className='far fa-plus-square' /> Add Expense
-                    </button>
-                  </div>
+              <div className='form-group'>
+                <label htmlFor='amount' className='font-weight-bold'>Amount : </label>
+                <input
+                  id='amount'
+                  className='form-control'
+                  type='number'
+                  placeholder='Amount'
+                  value={this.state.formAmount}
+                  onChange={this.handleAmount}
+                />
+              </div>
+
+              <div className='form-group'>
+                <button onClick={() => this.addExpense()}>
+                  <i className='far fa-plus-square' /> Add Expense
+                </button>
+              </div>
             </form>
             {/* Form ended */}
-            </div>
-            <div className='col-md-6'>
-                {this.state.isLoading && <h5>Loading...</h5>}
-                {!this.state.isLoading && (
-                  <>
-                    <table className='table table-striped table-dark text-center'>
-                      <thead>
-                        <tr>
-                          <th>Date</th>
-                          <th>Category</th>
-                          <th>Description</th>
-                          <th>Amount</th>
-                          <th>Delete</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {this.state.userExpenses.map((userExpense, index) => (
-                          <tr key={index}>
-                            <td>{this.parseDate(userExpense.attributes.date)}</td>
-                            <td>{userExpense.attributes.category}</td>
-                            <td>{userExpense.attributes.description}</td>
-                            <td>
-                              {this.formatCurrency(userExpense.attributes.amount)}
-                            </td>
-                            <td>
-                              <button
-                                onClick={() => this.removeExpense(userExpense.id)}
-                              >
-                                <i className='far fa-trash-alt' />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                    {this.state.userExpenses.length === 0 &&
-                      !this.state.isLoading && <p>No Expenses Yet...</p>}
-                  </>
-                )}
-                {/*  table ended*/}
-            </div> 
           </div>
+          <div className='col-md-6'>
+            {this.state.isLoading && <h5>Loading...</h5>}
+            {!this.state.isLoading && (
+              <>
+                <table className='table table-striped table-dark text-center'>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>Amount</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.userExpenses.map((userExpense, index) => (
+                      <tr key={index}>
+                        <td>{this.parseDate(userExpense.attributes.date)}</td>
+                        <td>{userExpense.attributes.category}</td>
+                        <td>{userExpense.attributes.description}</td>
+                        <td>
+                          {this.formatCurrency(userExpense.attributes.amount)}
+                        </td>
+                        <td>
+                          <button
+                            onClick={() => this.removeExpense(userExpense.id)}
+                          >
+                            <i className='far fa-trash-alt' />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {this.state.userExpenses.length === 0 &&
+                      !this.state.isLoading && <p>No Expenses Yet...</p>}
+              </>
+            )}
+            {/*  table ended */}
+          </div>
+        </div>
 
       </div>
     )

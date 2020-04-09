@@ -13,17 +13,18 @@ function Navbar () {
           <h1 className='siteName'>SmartCents</h1>
           <span className='sr-only'>(current)</span>
         </Link>
-      
-          <button className="navbar-toggler text-white" 
-                  type="button" 
-                  data-toggle="collapse" 
-                  data-target="#navbarNav" 
-                  aria-controls="navbarNav" 
-                  aria-expanded="false" 
-                  aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-          </button>
-        
+
+        <button
+          className='navbar-toggler text-white'
+          type='button'
+          data-toggle='collapse'
+          data-target='#navbarNav'
+          aria-controls='navbarNav'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+        >
+          <span className='navbar-toggler-icon' />
+        </button>
 
         <div className='collapse navbar-collapse' id='navbarNav'>
           <ul className='navbar-nav ml-auto'>
@@ -73,7 +74,7 @@ function Navbar () {
                   className='dropdown-menu'
                   aria-labelledby='dropdownMenuButton'
                 >
-                   <Link to='/about'>
+                  <Link to='/about'>
                     <span className='dropdown-item'>About Us</span>
                   </Link>
                   <Link to='/categories'>
