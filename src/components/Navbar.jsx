@@ -9,7 +9,8 @@ function Navbar () {
       <div className='container'>
         <a className='nav-link text-white text-uppercase ml-5' href='/'>
           {' '}
-          <i className='fas fa-file-invoice-dollar fa-3x' />{' '}
+          {/* <i className='fas fa-file-invoice-dollar fa-3x' />{' '} */}
+          <h1 className='siteName'>SmartCents</h1>
           <span className='sr-only'>(current)</span>
         </a>
         <button
@@ -59,12 +60,6 @@ function Navbar () {
             )}
 
             <li className='nav-item active'>
-              <Link to='/' className='nav-link text-white text-uppercase ml-5'>
-                {' '}
-                Budget{' '}
-              </Link>
-            </li>
-            <li className='nav-item active'>
               <div className='dropdown'>
                 <button
                   className='btn btn-secondary dropdown-toggle'
@@ -83,9 +78,9 @@ function Navbar () {
                   <Link to='/categories'>
                     <span className='dropdown-item'>Manage Categories</span>
                   </Link>
-                  <a className='dropdown-item' href='/'>
-                    Current Status
-                  </a>
+                  <Link to='/expenses'>
+                    <span className='dropdown-item'>Manage Expense</span>
+                  </Link>
                 </div>
               </div>
             </li>

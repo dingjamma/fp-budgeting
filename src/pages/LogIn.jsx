@@ -3,8 +3,6 @@ import AV from 'leancloud-storage'
 import { Redirect, Link } from 'react-router-dom'
 import { Label } from 'reactstrap'
 
-import { FacebookLoginButton } from 'react-social-login-buttons'
-
 export default class LogIn extends React.Component {
   constructor (props) {
     super(props)
@@ -88,10 +86,10 @@ export default class LogIn extends React.Component {
               {this.state.createAccount ? 'Register' : 'Log in'}
             </button>
           </Label>
-          <div className='text-center pt-3'>
+          {/* <div className='text-center pt-3'>
             Or Continue with your social media account
           </div>
-          <FacebookLoginButton />
+          <FacebookLoginButton /> */}
           <br />
           <Link to='/verify'>Problems logging in?</Link>
           {this.state.completed && <Redirect to='/' />}
