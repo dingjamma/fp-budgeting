@@ -73,6 +73,9 @@ function Navbar () {
                   className='dropdown-menu'
                   aria-labelledby='dropdownMenuButton'
                 >
+                   <Link to='/about'>
+                    <span className='dropdown-item'>About Us</span>
+                  </Link>
                   <Link to='/categories'>
                     <span className='dropdown-item'>Manage Categories</span>
                   </Link>

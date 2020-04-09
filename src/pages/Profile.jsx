@@ -1,6 +1,5 @@
 import React from 'react'
 import AV from 'leancloud-storage'
-import Footer from '../components/Footer'
 
 export default class Profile extends React.Component {
   constructor (props) {
@@ -52,13 +51,13 @@ export default class Profile extends React.Component {
            <form className='profile'>
               <div className="form-group">
                 <label htmlFor='username' className='font-weight-bold'>Name : </label>
-                {/* value={this.state.username} */}
+
                 <input id='username' className="form-control" value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
               </div>
 
               <div className="form-group">
                 <label htmlFor='email' className='font-weight-bold'>Email : </label>
-                {/* value={this.state.email} */}
+
                 <input id='email' className="form-control"  value={this.state.email}  onChange={e => this.setState({ email: e.target.value })} />
               </div>
 

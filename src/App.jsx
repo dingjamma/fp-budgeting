@@ -11,6 +11,7 @@ import Categories from './pages/Categories'
 import Expense from './pages/Expense'
 import Footer from './components/Footer'
 import Profile from './pages/Profile'
+import About from './pages/About'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -29,15 +30,10 @@ export default class App extends React.Component {
       <Router hashType='hashbang'>
         <div>
           {(!AV.User.current() || AV.User.current().isAnonymous()) && (
-            <div id='nm-acc-warn'>
-              <marquee behavior="scroll" direction="left">
-
+            <div id='nm-acc-warn' className='text-center'>
                   Your data may be deleted, please{' '}
                   <Link to='/logIn'>login or create an account</Link> in order to
-                  save your data.
-                
-              </marquee>
-             
+                  save your data. 
             </div>
           )}
           <Navbar />
@@ -48,6 +44,7 @@ export default class App extends React.Component {
             <Route path='/categories' component={Categories} />
             <Route path='/expenses' component={Expense} />
             <Route path='/profile' component={Profile} />
+            <Route path='/about' component={About} />
           </Switch>
           <Footer />
         </div>
