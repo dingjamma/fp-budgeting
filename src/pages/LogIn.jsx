@@ -19,7 +19,7 @@ export default class LogIn extends React.Component {
 
   render () {
     return (
-      <div className='container'>
+      <div className='container size'>
         <div className='login-form d-flex flex-column'>
           <h1 className='text-center'> Registration / Login</h1>
           <Label htmlFor='btn'>

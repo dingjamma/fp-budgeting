@@ -30,9 +30,14 @@ export default class App extends React.Component {
         <div>
           {(!AV.User.current() || AV.User.current().isAnonymous()) && (
             <div id='nm-acc-warn'>
-              Your data may be deleted, please{' '}
-              <Link to='/logIn'>login or create an account</Link> in order to
-              save your data.
+              <marquee behavior="scroll" direction="left">
+
+                  Your data may be deleted, please{' '}
+                  <Link to='/logIn'>login or create an account</Link> in order to
+                  save your data.
+                
+              </marquee>
+             
             </div>
           )}
           <Navbar />

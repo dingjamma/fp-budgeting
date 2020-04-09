@@ -8,7 +8,7 @@
   margin: auto;
 }
 
-.category {
+.size {
   width: 800px;
   height: 800px;
   /* border: 1px solid red; */
@@ -16,16 +16,17 @@
 
 .home{
   min-height: 800px;
+  
 }
 
+.profile{
+  min-width: 500px;
+}
 .siteName{
     font-family: cursive;
     font-weight: bold;
 }
 
-.imgCarosel{
-  border: 1px solid red;
-}
 
 #nm-acc-warn {
   background: rgb(209, 90, 90);

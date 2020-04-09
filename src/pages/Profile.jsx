@@ -1,5 +1,6 @@
 import React from 'react'
 import AV from 'leancloud-storage'
+import Footer from '../components/Footer'
 
 export default class Profile extends React.Component {
   constructor (props) {
@@ -42,14 +43,36 @@ export default class Profile extends React.Component {
   render () {
     return (
       <div>
-        <h1>User Profile</h1>
-        <h2>Basic Information</h2>
-        <label htmlFor='username'>Name</label>
-        <input id='username' value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
-        <label htmlFor='email'>Email</label>
-        <input id='email' value={this.state.email} onChange={e => this.setState({ email: e.target.value })} />
-        <button onClick={this.handlePasswordReset.bind(this)}>Reset Password</button>
-        <button onClick={this.handleSave.bind(this)}>Save</button>
+        <div className="container">
+          <div className='d-flex flex-column align-items-center w-75 size'>
+          <br/>
+          <h1>User Profile</h1>
+          <br/>
+          {/* <h2>Basic Information</h2> */}
+           <form className='profile'>
+              <div className="form-group">
+                <label htmlFor='username' className='font-weight-bold'>Name : </label>
+                {/* value={this.state.username} */}
+                <input id='username' className="form-control" value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor='email' className='font-weight-bold'>Email : </label>
+                {/* value={this.state.email} */}
+                <input id='email' className="form-control"  value={this.state.email}  onChange={e => this.setState({ email: e.target.value })} />
+              </div>
+
+              <div className="form-group">
+              <button className="btn btn-success" onClick={this.handlePasswordReset.bind(this)}>Reset Password</button>
+              </div>
+              <div className="form-group">
+              <button className="btn btn-primary" onClick={this.handleSave.bind(this)}>Save</button> 
+              </div>
+            </form>
+                
+            </div>
+        </div>
+
       </div>
     )
   }

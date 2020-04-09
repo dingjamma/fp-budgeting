@@ -184,7 +184,7 @@ export default class Expense extends React.Component {
 
   render () {
     return (
-      <div className='container '>
+      <div className='container size'>
         <div className='d-flex align-items-center justify-content-center category'>
           <div>
             {AV.User.current().isAnonymous() ? (
