@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function BudgetInput (props) {
-  const [budgetInput, setBudgetInput] = useState(props.userCategory.Budget);
+  const [budgetInput, setBudgetInput] = useState(props.userCategory.Budget)
 
   function handleBudgetInputChange (e) {
     setBudgetInput(e.target.value)

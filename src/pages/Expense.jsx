@@ -1,3 +1,5 @@
+/* global alert */
+
 import React from 'react'
 import AV from 'leancloud-storage'
 

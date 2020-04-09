@@ -50,9 +50,7 @@ function Navbar () {
                   className='btn btn-secondary'
                   onClick={() =>
                     AV.User.loginAnonymously().then(() =>
-                      window.location.reload()
-                    )
-                  }
+                      window.location.reload())}
                 >
                   Sign out
                 </button>

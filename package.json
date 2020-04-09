@@ -46,6 +46,7 @@
   "devDependencies": {
     "@types/react": "^16.9.30",
     "@types/react-router-dom": "^5.1.3",
+    "babel-eslint": "^10.1.0",
     "google-charts": "^2.0.0",
     "standard": "^14.3.3"
   },
@@ -60,9 +61,24 @@
   "standard": {
     "ignore": [
       "**/*.test.js"
-    ]
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "parser": "babel-eslint"
   },
   "eslint": {
-    "extends": "standard"
+    "extends": "standard",
+    "ignore": [
+      "**/*.test.js"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "parser": "babel-eslint"
   }
 }

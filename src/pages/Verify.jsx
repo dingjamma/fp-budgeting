@@ -17,7 +17,7 @@ export default class Verify extends React.Component {
     return (
       this.state.selected
         ? (
-          <div >
+          <div>
             <label htmlFor='email'>Email</label>
             <input id='email' type='email' onChange={event => this.setState({ email: event.target.value })} value={this.state.email} />
             <button onClick={async () => {
@@ -47,15 +47,15 @@ export default class Verify extends React.Component {
           </div>
         )
         : (
-          <div className="container">
-              <div className="d-flex flex-column align-items-center justify-content-center ">
-                  <br/>
-                  <h1>What do you need help with?</h1>
-                  <br/>
-                  <button onClick={() => this.setState({ selected: true, action: 'verify' })}>I havn't received the verification email</button>
-                  <br/>
-                  <button onClick={() => this.setState({ selected: true, action: 'reset' })}>I forgot my password</button>
-              </div>
+          <div className='container'>
+            <div className='d-flex flex-column align-items-center justify-content-center '>
+              <br />
+              <h1>What do you need help with?</h1>
+              <br />
+              <button onClick={() => this.setState({ selected: true, action: 'verify' })}>I havn't received the verification email</button>
+              <br />
+              <button onClick={() => this.setState({ selected: true, action: 'reset' })}>I forgot my password</button>
+            </div>
           </div>
         )
     )

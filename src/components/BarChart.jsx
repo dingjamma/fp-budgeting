@@ -33,17 +33,17 @@ export default class BarChart extends React.PureComponent {
 
       query.equalTo('user', this.user.id)
       await query.first().then(queryResult => {
-        //Define New Arrays
+        // Define New Arrays
         let theCategories = []
-        //If Query is Valid
+        // If Query is Valid
         if (queryResult !== undefined) {
-          //Grab Categories
+          // Grab Categories
           theCategories = queryResult.attributes.userCategories
 
           if (theCategories.length > 0) {
             this.setState({ hasCategory: true })
           }
-          //First Add The Legend Fields
+          // First Add The Legend Fields
           for (let i = 0; i < theCategories.length; i++) {
             categoryName = [...categoryName, theCategories[i].Category]
             categoryBudget = [...categoryBudget, theCategories[i].Budget]
@@ -53,15 +53,15 @@ export default class BarChart extends React.PureComponent {
 
       queryExpense.equalTo('user', this.user.id)
       await queryExpense.find().then(queryExpenseResult => {
-        //If Query is Valid
+        // If Query is Valid
         if (queryExpenseResult !== undefined) {
-          //Grab Expenses
+          // Grab Expenses
           this.setState({
             userExpense: queryExpenseResult
           })
-          //First Add The Legend Fields
-          //Define New Arrays
-          let theExpenses = this.state.userExpense
+          // First Add The Legend Fields
+          // Define New Arrays
+          const theExpenses = this.state.userExpense
           newData = [...newData, ['Category', 'Expense', 'Budget']]
 
           for (let cn = 0; cn < categoryName.length; cn++) {
@@ -75,7 +75,7 @@ export default class BarChart extends React.PureComponent {
               }
             }
 
-            //add that to the newData
+            // add that to the newData
             newData = [
               ...newData,
               [categoryName[cn], expense, categoryBudget[cn]]
@@ -107,7 +107,7 @@ export default class BarChart extends React.PureComponent {
                 {' '}
                 Please add your expense and budget
               </h3>
-              <Carousel></Carousel>
+              <Carousel />
             </div>
           ) : (
             <div className='container d-flex flex-column align-items-center home'>
