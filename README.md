@@ -1,5 +1,12 @@
-# fp-budgeting
+# SmartCents
+## An website to track the monthly expense
 
-This name is because we did not come up with any good ones, do not ask why.
+### Deployment link [SmartCents](http://smartcents.gold/
 
-For project details, refer to [wiki](https://github.com/lm902/fp-budgeting/wiki)
+## A Short video presentation is available here : [SmartCents](https://www.youtube.com/watch?v=jiKF2J3o11U&feature=youtu.be)
+
+## Functional Requirement:
+
+*	User Registration & login 
+*	Users should be able to track their monthly expense
+*	Users should be able to set their budget and see a comparison between budget and expense.
