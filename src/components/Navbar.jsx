@@ -59,7 +59,7 @@ function Navbar () {
             )}
 
             <li className='nav-item dropdown active m-auto'>
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a className="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  Expense Tracker
                 </a>
 
