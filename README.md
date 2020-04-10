@@ -1,5 +1,5 @@
 # SmartCents
-## An website to track the monthly expense
+## A website to track the monthly expense
 
 ### Deployment link [SmartCents](http://smartcents.gold/)
 
