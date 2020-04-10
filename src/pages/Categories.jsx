@@ -42,6 +42,10 @@ export default class Categories extends React.Component {
     let duplicate = false
     var UserCategories = AV.Object.extend('Categories')
     var userCategories = new UserCategories()
+    const acl = new AV.ACL()
+    acl.setReadAccess(AV.User.current(), true)
+    acl.setWriteAccess(AV.User.current(), true)
+    userCategories.setACL(acl)
 
     let categoryNameToAdd = this.state.newCategoryEntry.trim()
     if (categoryNameToAdd.length === 0) {
@@ -95,6 +99,10 @@ export default class Categories extends React.Component {
   updateDbCategory = async newCategoryArray => {
     var UserCategories = AV.Object.extend('Categories')
     var userCategories = new UserCategories()
+    const acl = new AV.ACL()
+    acl.setReadAccess(AV.User.current(), true)
+    acl.setWriteAccess(AV.User.current(), true)
+    userCategories.setACL(acl)
 
     try {
       var query = new AV.Query('Categories')
