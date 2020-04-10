@@ -61,6 +61,10 @@ export default class Expense extends React.Component {
     // Initialize Object
     var UserExpense = AV.Object.extend('Expenses')
     var userExpense = new UserExpense()
+    const acl = new AV.ACL()
+    acl.setReadAccess(AV.User.current(), true)
+    acl.setWriteAccess(AV.User.current(), true)
+    userExpense.setACL(acl)
 
     // Add Validation Here
     if (this.state.formCategory === 'Select') {
