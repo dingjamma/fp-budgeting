@@ -11,3 +11,11 @@
 *	Users should be able to track their monthly expense
 *	Users should be able to set their budget and see a comparison between budget and expenses.
 
+ ## Home Page
+ ![Home Page](https://github.com/lm902/fp-budgeting/blob/master/src/images/5.png)
+ 
+ ## Manage Categories
+ ![Registration Page](https://github.com/lm902/fp-budgeting/blob/master/src/images/6.png)
+ 
+ ## Manage Expense 
+ ![Expense Page](https://github.com/lm902/fp-budgeting/blob/master/src/images/7.png)
